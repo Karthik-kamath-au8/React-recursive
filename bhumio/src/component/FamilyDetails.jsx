@@ -1,32 +1,38 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 
-const FamilyDetails = (Data) => {
-  console.log(Data,'famile')
+const FamilyDetails = React.forwardRef(({Data},ref) => {
+  console.log(Data,'data')
   return (
-    <Grid md={12}>
-    <Card sx={{ minHeight:355,border:'1px solid',margin:'10px' }}>
-      {/* <span>Name:{Data.name}</span>
+    <Grid md={12} ref={ref}>
+    <Card sx={{ minHeight:390,border:'1px solid',margin:'10px' }}>
+    <Typography sx={{ fontSize: 14,fontWeight:600, textAlign:'center' }} component="div">
+            Family Tree
+      </Typography>
+      <span style={{margin:'10px'}}><strong>Name:</strong> {Data.name}</span>
       <br/>
-      <span>Spouse:{Data.Spouse}</span>
       <br/>
-      <span>Location:{Data.location}</span>
+      <span style={{margin:'10px'}}><strong>Spouse:</strong> {Data.spouse}</span>
       <br/>
-      <span>Birth Year:{Data.Birth}</span>
       <br/>
-      <span>Present Address:{Data.Address}</span>
+      <span style={{margin:'10px'}}><strong>Location:</strong> {Data.location}</span>
       <br/>
-      <span>Family Photo:{Data.photo}</span> */}
+      <br/>
+      <span style={{margin:'10px'}}><strong>Birth Year:</strong> {Data.birth}</span>
+      <br/>
+      <br/>
+      <span style={{margin:'10px'}}><strong>Present Address:</strong> {Data.address}</span>
+      <br/>
+      <br/>
+
+      <span style={{margin:'10px'}}><strong>Family Photo:</strong><img style={{width:'70px',position:'fixed', margin:"10px"}} src={Data.photo} alt=""/></span>
 
     </Card>
     </Grid>
   );
 }
+)
 
-// const mapStateToProps = () => state => {
-//     return {
-//         family: state.familyList,
-//     };
-// };
 export default FamilyDetails;

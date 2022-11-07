@@ -1,6 +1,7 @@
-export function addFamily(families) {
+export function addFamily(family) {
+    console.log(family)
     return {
         type: 'ADD_FAMILY',
-        payload: families
+        payload: family
     };
 }
