@@ -4,10 +4,10 @@ import TextField from "@mui/material/TextField";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-import { addFamily } from "../redux/actions/addFamily";
+import { updateFamily } from "../redux/actions/addFamily";
 import { connect } from "react-redux";
 
-const FamilyForm = ({ addFamily, setOpen }) => {
+const FamilyForm = ({ updateFamily, setOpen, family, selectedMember }) => {
   console.log(setOpen, "open");
   const [name, setName] = React.useState("");
   const [spouse, setSpouse] = React.useState("");
@@ -17,7 +17,7 @@ const FamilyForm = ({ addFamily, setOpen }) => {
   const [photo, setPhoto] = React.useState("");
 
   const add = () => {
-    addFamily({
+    selectedMember.children = [{
       id: Math.floor(Math.random() * 1000),
       name: name,
       spouse: spouse,
@@ -26,7 +26,19 @@ const FamilyForm = ({ addFamily, setOpen }) => {
       address: address,
       photo: photo,
       parentId: 74,
-    });
+  }]
+
+  updateFamily({...family})
+    // addFamily({
+    //   id: Math.floor(Math.random() * 1000),
+    //   name: name,
+    //   spouse: spouse,
+    //   location: location,
+    //   birth: birth,
+    //   address: address,
+    //   photo: photo,
+    //   parentId: 74,
+    // });
     setOpen(false);
   };
 
@@ -106,6 +118,6 @@ const FamilyForm = ({ addFamily, setOpen }) => {
 };
 
 const mapDispatchToProps = {
-  addFamily,
+  updateFamily,
 };
 export default connect(null, mapDispatchToProps)(FamilyForm);

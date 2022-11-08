@@ -127,8 +127,8 @@ const intialstate =
 
 const familyReducer = (state= intialstate,action ) => {
     switch (action.type){
-        case 'ADD_FAMILY':
-            return {...state,children:state.children.concat(action.payload)};
+        case 'UPDATE_FAMILY':
+            return {...action.payload};
         default:
             return state;    
     }

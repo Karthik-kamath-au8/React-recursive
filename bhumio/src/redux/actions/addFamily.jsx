@@ -1,7 +1,7 @@
-export function addFamily(family) {
+export function updateFamily(family) {
     console.log(family)
     return {
-        type: 'ADD_FAMILY',
+        type: 'UPDATE_FAMILY',
         payload: family
     };
 }

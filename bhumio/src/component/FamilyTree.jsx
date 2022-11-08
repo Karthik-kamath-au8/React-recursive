@@ -14,25 +14,16 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import FamilyForm from "./FamilyForm";
 import ReactToPrint from "react-to-print";
+import PrintFamilyTree from "./PrintFamilyTree";
 
 const FamilyTree = ({ family }) => {
-  console.log(family, "family");
   var [Data, setData] = useState("");
   const [open, setOpen] = useState(false);
   const componentRef = useRef();
   const formOpen = () => setOpen(true);
   const RenderTree = (family) => {
-    // const [Data, setData] =useState('');
     const handleClick = () => {
-      setData({
-        id: family.id,
-        name: family.name,
-        spouse: family.spouse,
-        location: family.location,
-        birth: family.birth,
-        address: family.address,
-        photo: family.photo,
-      });
+      setData(family);
     };
     return (
       <>
@@ -48,7 +39,6 @@ const FamilyTree = ({ family }) => {
     );
   };
 
-  console.log(Data, "Data");
   return (
     <Grid container spacing={-2}>
       <Grid item xs={3} md={3} spacing={-2}>
@@ -99,12 +89,15 @@ const FamilyTree = ({ family }) => {
       <Grid md={9} xs={9}>
         {open === false ? (
           <>
-            <FamilyDetails Data={Data} ref={componentRef} />
+            <FamilyDetails Data={Data} />
           </>
         ) : (
-          <FamilyForm family={family} setOpen={setOpen} />
+          <FamilyForm family={family} selectedMember={Data} setOpen={setOpen} />
         )}
       </Grid>
+      <div style={{display:'none'}}>
+      <PrintFamilyTree family={family} ref={componentRef} />
+      </div>
     </Grid>
   );
 };
